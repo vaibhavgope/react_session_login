@@ -42,7 +42,7 @@ app.post('/login', async (req, res) => {
         if (user) res.sendStatus(409)
         else {
             login.login(req.body.email).then(resp => {
-                if (resp.error) res.status(404).send(resp.error)
+                if (resp.error) throw new Error('Invalid Email')
                 else {
                     try {
                         const user = new userModel({ 'emailId': req.body.email })
@@ -51,7 +51,7 @@ app.post('/login', async (req, res) => {
                         res.status(500).send(error)
                     }
                 }
-            }).then(resp => res.sendStatus(200)).catch(e => res.status(500).send(e))
+            }).then(resp => res.sendStatus(200)).catch(e => res.status(404).send(e))
         }
     } catch {
         res.status(501).send('Internal Server Error');
