@@ -78,6 +78,6 @@ app.post('/logout', async (req, res) => {
 })
 
 
-server.listen(8080, function () {
+server.listen(process.env.PORT || 8080, function () {
     console.log("server is listening on port: 8080");
 });

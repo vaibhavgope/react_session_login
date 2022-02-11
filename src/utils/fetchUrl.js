@@ -4,8 +4,8 @@ const fetchUrl = async (method = 'GET', body, endpoint) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body)
     };
-    //TODO: deploy and add backend url in env
-    const resp = await fetch(`http://localhost:8080/${endpoint}`, requestOptions)
+    console.log('env =', process.env)
+    const resp = await fetch(`https://evening-crag-11346.herokuapp.com/${endpoint}`, requestOptions)
     return resp
 }
 
